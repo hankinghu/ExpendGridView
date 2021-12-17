@@ -1,7 +1,4 @@
-package com.example.hannotest.utils
-
-import android.content.Context
-import android.util.DisplayMetrics
+package com.example.expendgridview
 
 /**
  *
@@ -13,15 +10,19 @@ import android.util.DisplayMetrics
  * |_| |_|\__,_|_| |_|_|\_\_|_| |_|\__, |
  ********************************** __/ |
  ********************************* |___/
- * create time 2021/12/16 2:46 下午
+ * create time 2021/12/17 2:47 下午
  * create by 胡汉君
+ * 实现这个接口来添加expendControl view,接口中有两个方法调用，一个是expend，一个是fold，对应折叠和展开
+ *
  */
-object Utils {
+interface IExpendControl {
     /**
-     * 获取屏幕的宽度
+     * 展开
      */
-    fun getScreenWidth(context: Context): Int {
-        val dm = context.resources.displayMetrics
-        return dm.widthPixels
-    }
+    fun expend()
+
+    /**
+     * 折叠
+     */
+    fun fold()
 }

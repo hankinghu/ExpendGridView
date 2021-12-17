@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.example.hannotest.view;
+package com.example.expendgridview;
 
 import android.annotation.TargetApi;
 import android.content.Context;
@@ -59,6 +59,11 @@ public class GridViewEnableFooter extends GridView {
          * <code>true</code> if the fixed view should be selectable in the grid
          */
         public boolean isSelectable;
+        /**
+         * 是不是expend Control view，默认不是
+         */
+        public boolean isExpendControlView = false;
+
     }
 
     private int mNumColumns = AUTO_FIT;
@@ -181,11 +186,18 @@ public class GridViewEnableFooter extends GridView {
         this.foldNm = foldNm;
     }
 
+    /**
+     * @param v 设置底部footer而view
+     */
     public void addFooterView(View v) {
         addFooterView(v, null, true);
     }
 
     public void addFooterView(View v, Object data, boolean isSelectable) {
+        addFooterView(v, data, isSelectable, false);
+    }
+
+    public void addFooterView(View v, Object data, boolean isSelectable, boolean isExpendControlView) {
         ListAdapter mAdapter = getAdapter();
         if (mAdapter != null && !(mAdapter instanceof HeaderViewGridAdapter)) {
             throw new IllegalStateException(
@@ -206,6 +218,8 @@ public class GridViewEnableFooter extends GridView {
         info.viewContainer = fl;
         info.data = data;
         info.isSelectable = isSelectable;
+        //控制是否可以折叠
+        info.isExpendControlView = isExpendControlView;
         mFooterViewInfos.add(info);
 
         if (mAdapter != null) {
@@ -965,22 +979,22 @@ public class GridViewEnableFooter extends GridView {
         }
     }
 
-    /**
-     * @param clickListener l
-     *                      设置footer点击事件
+    /***
+     *
+     * @param listener 监听
+     *  找到expendview设置监听事件
      */
-    public void setFooterClickListener(OnClickListener clickListener) {
-        //给每一个footer添加点击事件
+    public void setExpendControlClickListener(OnClickListener listener) {
         for (FixedViewInfo footer : mFooterViewInfos) {
-            footer.view.setOnClickListener(v -> {
-                //这里做些处理
-                if (foldNm > 0) {
-                    setExpend(!expend);
-                    notifyDataChanged();
-                }
-                clickListener.onClick(v);
-            });
+            if (footer.isExpendControlView) {
+                footer.view.setOnClickListener(v -> {
+                    //这里做些处理
+                    interExpend(v);
+                    listener.onClick(v);
+                });
+            }
         }
+
     }
 
     private ItemClickHandler getItemClickHandler() {
@@ -1016,5 +1030,32 @@ public class GridViewEnableFooter extends GridView {
 
     public void setExpend(boolean expend) {
         this.expend = expend;
+    }
+
+    /***
+     * 用于控制expend的view比如loadMoreView
+     * @param view 控制expend的view
+     */
+    public void addExpendControlView(View view) {
+        //直接调用add footer view 就可以
+        addFooterView(view, null, true, true);
+        view.setOnClickListener(v -> {
+            interExpend(v);
+        });
+    }
+
+    private void interExpend(View view) {
+        if (foldNm > 0) {
+            //方法回调
+            if (view instanceof IExpendControl) {
+                if (expend) {
+                    ((IExpendControl) view).fold();
+                } else {
+                    ((IExpendControl) view).expend();
+                }
+            }
+            setExpend(!expend);
+            notifyDataChanged();
+        }
     }
 }

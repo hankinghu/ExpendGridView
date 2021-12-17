@@ -1,3 +1,4 @@
 
-rootProject.name = "HannoTest"
+rootProject.name = "ExpendGridView"
 include ':app'
+include ':expendgridview'

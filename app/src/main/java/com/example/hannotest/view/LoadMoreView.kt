@@ -4,7 +4,9 @@ import android.content.Context
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import androidx.constraintlayout.widget.ConstraintLayout
+import com.example.expendgridview.IExpendControl
 import com.example.hannotest.R
+import com.example.hannotest.databinding.LoadMoreViewBinding
 
 /**
  *
@@ -21,8 +23,20 @@ import com.example.hannotest.R
  */
 class LoadMoreView @JvmOverloads constructor(
     context: Context, attrs: AttributeSet? = null
-) : ConstraintLayout(context, attrs) {
-    init {
-        LayoutInflater.from(context).inflate(R.layout.load_more_view, this)
+) : ConstraintLayout(context, attrs), IExpendControl {
+    private var viewBinding: LoadMoreViewBinding =
+        LoadMoreViewBinding.inflate(LayoutInflater.from(context), this)
+
+    override fun expend() {
+        //展开时操作
+        viewBinding.loadMore.text = "收起"
+        viewBinding.arrow.setImageResource(R.drawable.up_arrow)
+    }
+
+    override fun fold() {
+        //折叠时操作
+        viewBinding.loadMore.text = "展开全部"
+        viewBinding.arrow.setImageResource(R.drawable.down_arrow)
+
     }
 }

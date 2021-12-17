@@ -6,10 +6,12 @@
         <entry key="../../../../layout/custom_preview.xml" value="0.3572916666666667" />
         <entry key="app/src/main/res/drawable-xxhdpi/round_circle.xml" value="0.30885416666666665" />
         <entry key="app/src/main/res/drawable-xxhdpi/round_n550.xml" value="0.346875" />
+        <entry key="app/src/main/res/drawable/down_arrow.xml" value="0.28177083333333336" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/item_view.xml" value="0.2821557971014493" />
         <entry key="app/src/main/res/layout/list_item_hold_view.xml" value="0.24592391304347827" />
         <entry key="app/src/main/res/layout/list_item_view.xml" value="0.24592391304347827" />
-        <entry key="app/src/main/res/layout/load_more_view.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/load_more_view.xml" value="0.55" />
       </map>
     </option>
   </component>

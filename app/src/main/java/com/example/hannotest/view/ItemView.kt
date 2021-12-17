@@ -5,6 +5,7 @@ import android.util.AttributeSet
 import android.view.LayoutInflater
 import androidx.constraintlayout.widget.ConstraintLayout
 import com.example.hannotest.R
+import com.example.hannotest.databinding.ItemViewBinding
 
 /**
  *
@@ -22,7 +23,10 @@ import com.example.hannotest.R
 class ItemView @JvmOverloads constructor(
     context: Context, attrs: AttributeSet? = null
 ) : ConstraintLayout(context, attrs) {
-    init {
-        LayoutInflater.from(context).inflate(R.layout.item_view, this)
+    private var itemViewBinding: ItemViewBinding =
+        ItemViewBinding.inflate(LayoutInflater.from(context), this)
+
+    fun setPluginName(name: String) {
+        itemViewBinding.pluginName.text = name
     }
 }
