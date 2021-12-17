@@ -2,12 +2,13 @@
 ![ezgif](https://raw.githubusercontent.com/hankinghu/pic_libary/master/pic/ezgif.com-gif-maker.gif)
 
 ### 方法
+1、添加底部控制view
 
 ```java
 public void addExpendControlView(View view)
 ```
-用于添加底部控制的view
 
+2、设置折叠时展示的行数
 
 ```java
 setFoldNum(int foldNm)
@@ -16,7 +17,7 @@ setFoldNum(int foldNm)
 
 ### 使用方法
 
-```kotlin
+```java
 //折叠控制view
 gridView.addFooterView(LoadMoreView(this))
 
@@ -27,7 +28,7 @@ gridView.adapter = object : BaseAdapter() {...}
 ```
 
 上面的loadMoreView就是底部的折叠控制view，添加自己的控制view时，继承下面接口
-```kotlin
+```java
 interface IExpendControl {
     /**
      * 展开
@@ -42,7 +43,7 @@ interface IExpendControl {
 ```
 重写expend和fold方法，也就是展开和折叠，完成控制。
 
-```kotlin
+```java
 class LoadMoreView @JvmOverloads constructor(
     context: Context, attrs: AttributeSet? = null
 ) : ConstraintLayout(context, attrs), IExpendControl {
@@ -63,5 +64,6 @@ class LoadMoreView @JvmOverloads constructor(
     }
 }
 ```
+
 ### //todo
 1、展开和收起添加动画
