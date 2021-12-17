@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="56dp"
+    android:layout_height="54dp"
+    tools:parentTag="androidx.constraintlayout.widget.ConstraintLayout">
+
+    <ImageView
+        android:id="@+id/bg"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@drawable/round_n550"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintDimensionRatio="h,56:54"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/circle"
+        android:layout_width="16dp"
+        android:layout_height="16dp"
+        android:src="@drawable/hollow_circle"
+        app:layout_constraintBottom_toBottomOf="@+id/bg"
+        app:layout_constraintEnd_toEndOf="@+id/bg"
+        app:layout_constraintStart_toStartOf="@+id/bg"
+        app:layout_constraintTop_toTopOf="@+id/bg"
+        app:layout_constraintVertical_bias="0.4" />
+
+    <TextView
+        android:id="@+id/pluginName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="2dp"
+        android:text="备课"
+        android:textColor="@color/white"
+        android:textSize="10sp"
+        app:layout_constraintEnd_toEndOf="@+id/circle"
+        app:layout_constraintStart_toStartOf="@+id/circle"
+        app:layout_constraintTop_toBottomOf="@+id/circle" />
+</merge>
