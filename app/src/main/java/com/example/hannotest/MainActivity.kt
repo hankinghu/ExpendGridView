@@ -29,7 +29,7 @@ class MainActivity : Activity() {
         add("缅甸")
         add("泰国")
         add("印度")
-        add("古巴")
+//        add("古巴")
     }
 
     //是否展开
